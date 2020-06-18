@@ -1,17 +1,18 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
 
+    private SpellController spellController;
+
     [SerializeField]
     private float movementSpeed;
+    RaycastHit hit;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        spellController = this.gameObject.GetComponent<SpellController>();
     }
 
     // Update is called once per frame
@@ -31,7 +32,7 @@ public class PlayerController : MonoBehaviour
         Vector3 movement = new Vector3(horizontal, 0, vertical);
         transform.Translate(movement * movementSpeed * Time.deltaTime, Space.World);
         //Player Rotation
-        RaycastHit hit;
+
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
         if (Physics.Raycast(ray, out hit))
@@ -42,77 +43,77 @@ public class PlayerController : MonoBehaviour
 
     private void AttackHandler()
     {
-        LMBclick();
-        RMBclick();
-        Qclick();
-        Eclick();
-        Rclick();
-        SHIFTclick();
+        LmbClick();
+        RmbClick();
+        QClick();
+        EClick();
+        RClick();
+        ShiftClick();
     }
     /// <summary>
     /// Erklärung zum code bidde hier ^^
     /// </summary>
-    private void LMBclick()
+    private void LmbClick()
     {
         if (Input.GetKey(KeyCode.Mouse0))
         {
             //NormalAttack
-            Debug.Log("LMB");
+            spellController.LmbSpell(hit.point);
         }
     }
     /// <summary>
     /// Erklärung zum code bidde hier ^^
     /// </summary>
-    private void RMBclick()
+    private void RmbClick()
     {
         if (Input.GetKeyDown(KeyCode.Mouse1))
         {
             //EyeFrame
-            Debug.Log("RMB");
+            spellController.RmbSpell(hit.point);
         }
     }
     /// <summary>
     /// Erklärung zum code bidde hier ^^
     /// </summary>
-    private void Qclick()
+    private void QClick()
     {
         if (Input.GetKeyDown(KeyCode.Q))
         {
             //GarenE
-            Debug.Log("Q");
+            spellController.QSpell(transform);
         }
     }
     /// <summary>
     /// Erklärung zum code bidde hier ^^
     /// </summary>
-    private void Eclick()
+    private void EClick()
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
             //GravesUlt
-            Debug.Log("E");
+            spellController.ESpell(hit.point);
         }
     }
     /// <summary>
     /// Erklärung zum code bidde hier ^^
     /// </summary>
-    private void Rclick()
+    private void RClick()
     {
         if (Input.GetKeyDown(KeyCode.R))
         {
             //CanonBall
-            Debug.Log("R");
+            spellController.RSpell(hit.point);
         }
     }
     /// <summary>
     /// Erklärung zum code bidde hier ^^
     /// </summary>
-    private void SHIFTclick()
+    private void ShiftClick()
     {
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
             //Dash
-            Debug.Log("SWUSCH!!");
+            spellController.ShiftSpell(hit.point);
         }
     }
 
