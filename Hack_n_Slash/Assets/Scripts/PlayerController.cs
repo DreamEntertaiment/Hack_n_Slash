@@ -126,22 +126,27 @@ public class PlayerController : MonoBehaviour
         if (_qCooldown > 0)
         {
             _qCooldown -= Time.deltaTime;
+            //Hier UI colldown stuff
         }
         if (_eCooldown > 0)
         {
             _eCooldown -= Time.deltaTime;
+            //Hier UI colldown stuff
         }
         if (_rCooldown > 0)
         {
             _rCooldown -= Time.deltaTime;
+            //Hier UI colldown stuff
         }
         if (_rmbCooldown > 0)
         {
             _rmbCooldown -= Time.deltaTime;
+            //Hier UI colldown stuff
         }
         if (_shiftCooldown > 0)
         {
             _shiftCooldown -= Time.deltaTime;
+            //Hier UI colldown stuff
         }
     }
 
